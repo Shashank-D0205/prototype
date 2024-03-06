@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(LoginApp());
@@ -10,13 +11,82 @@ class LoginApp extends StatelessWidget {
     return MaterialApp(
       home: LoginPage(),
       theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Color(0xFF121212)
+        scaffoldBackgroundColor: Color(0xFF121212),
       ),
     );
   }
 }
 
 class LoginPage extends StatelessWidget {
+  Future<void> login(String username, String password, BuildContext context) async {
+    try {
+      http.Response response = await http.post(Uri.parse('https://reqres.in/api/login'), body: {
+        'email': username,
+        'password': password,
+      });
+      if (response.statusCode == 200) {
+        print("Login Success");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Login Success"),
+              content: Text("You have successfully logged in"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+        // Replace this navigation with your desired navigation logic
+        Navigator.pushNamed(context, '/home');
+      } else {
+        print("Login Failed");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Login Failed"),
+              content: Text("Invalid username or password"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text("An error occurred while logging in"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,6 +169,10 @@ class LoginPage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
+                    // Add your login functionality here
+                    String username = ''; // Get username from TextField
+                    String password = ''; // Get password from TextField
+                    login(username, password, context);
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.yellow.shade900,
@@ -114,17 +188,16 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               TextButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Text(
                   'Forgot Password?',
                   style: TextStyle(
-                      color: Color(0xFFE6B7D2)
+                    color: Color(0xFFE6B7D2),
                   ),
                 ),
               ),
               TextButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text(
                   'New to YuvaAnubhav? Sign up',
                   style: TextStyle(
