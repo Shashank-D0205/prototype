@@ -43,7 +43,6 @@ class LoginPage extends StatelessWidget {
             );
           },
         );
-        // Replace this navigation with your desired navigation logic
         Navigator.pushNamed(context, '/home');
       } else {
         print("Login Failed");
@@ -169,7 +168,6 @@ class LoginPage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your login functionality here
                     String username = ''; // Get username from TextField
                     String password = ''; // Get password from TextField
                     login(username, password, context);
