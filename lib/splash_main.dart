@@ -3,6 +3,8 @@ import 'package:prototype/Login Screen.dart';
 import 'package:prototype/Sign%20up.dart';
 
 class GetStartedPage extends StatefulWidget {
+  const GetStartedPage({super.key});
+
   @override
   _GetStartedPageState createState() => _GetStartedPageState();
 }
@@ -16,7 +18,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 50.0),
+            const SizedBox(height: 50.0),
             Container(
               height: 300,
               decoration: BoxDecoration(
@@ -39,8 +41,8 @@ class _GetStartedPageState extends State<GetStartedPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Welcome to YuvaAnubhav',
               style: TextStyle(
                 fontSize: 24.0,
@@ -48,8 +50,8 @@ class _GetStartedPageState extends State<GetStartedPage> {
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 10.0),
-            Text(
+            const SizedBox(height: 10.0),
+            const Text(
               'An easy query to ease the tech worry!',
               style: TextStyle(
                 fontSize: 16.0,
@@ -57,7 +59,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -71,18 +73,18 @@ class _GetStartedPageState extends State<GetStartedPage> {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Get Started',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              child: Text(
+              child: const Text(
                 'Already have an account? Sign in',
                 style: TextStyle(
                   color: Color(0xFFE6B7D2),

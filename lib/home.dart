@@ -8,6 +8,8 @@ class ChatMessage {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -16,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 1; // Index for the selected tab
   List<ChatMessage> chatMessages = []; // List to store chat messages
 
-  TextEditingController _messageController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false, // Remove the back button
-            title: Text('Chat Section'),
+            title: const Text('Chat Section'),
           ),
           body: Column(
             children: [
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildInputField() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       color: Colors.grey[200],
       child: Row(
         children: [
@@ -74,12 +76,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 filled: true,
                 fillColor: Colors.white,
-                contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               ),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
             onPressed: () {
               _sendMessage();
             },
@@ -106,13 +108,13 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white, // Set background color to match LoginPage theme
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove the back button
-        title: Text(
+        title: const Text(
           'Yuva Anubhav',
           style: TextStyle(color: Colors.black), // Set text color for app bar title
         ),
         backgroundColor: Colors.blue, // Set a new color for the app bar background
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'An easy query to ease the tech worry!',
           style: TextStyle(color: Colors.black54), // Set text color for content
@@ -125,10 +127,10 @@ class _HomePageState extends State<HomePage> {
   Widget _buildCustomNavigationBar() {
     return BottomAppBar(
       color: Colors.white, // Set a new color for the bottom app bar background
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       child: Container(
         height: 60.0,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.blue, // Set a new color for the container
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
@@ -163,23 +165,23 @@ class _HomePageState extends State<HomePage> {
 class ChatBubble extends StatelessWidget {
   final ChatMessage message;
 
-  ChatBubble({required this.message});
+  const ChatBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
+            topLeft: const Radius.circular(20.0),
+            topRight: const Radius.circular(20.0),
             bottomLeft: Radius.circular(message.isMe ? 20.0 : 0.0),
             bottomRight: Radius.circular(message.isMe ? 0.0 : 20.0),
           ),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             decoration: BoxDecoration(
               color: message.isMe ? Colors.blue : Colors.grey[300],
               borderRadius: BorderRadius.circular(20.0),
@@ -188,7 +190,7 @@ class ChatBubble extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.3),
                   spreadRadius: 1,
                   blurRadius: 5,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),

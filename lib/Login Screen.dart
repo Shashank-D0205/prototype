@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prototype/chat.dart';
-import 'home.dart';
 
 void main() {
   runApp(const LoginApp());
@@ -78,7 +77,7 @@ class LoginPage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => ChatWidget()));
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => const ChatWidget()));
                     // login logic
                     // String email = _emailController.text;
                     // String password = _passwordController.text;
@@ -113,8 +112,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: Center(
-        child: const Text('Welcome to the Home Page'),
+      body: const Center(
+        child: Text('Welcome to the Home Page'),
       ),
     );
   }

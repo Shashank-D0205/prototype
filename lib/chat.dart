@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChatWidget extends StatefulWidget {
+  const ChatWidget({super.key});
+
   @override
   _ChatWidgetState createState() => _ChatWidgetState();
 }
@@ -61,15 +63,15 @@ class _ChatWidgetState extends State<ChatWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChatBot'),
+        title: const Text('ChatBot'),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Colors.deepPurple, Colors.purpleAccent],
               begin: Alignment.topLeft,
@@ -82,7 +84,7 @@ class _ChatWidgetState extends State<ChatWidget> {
         children: [
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               itemCount: _messages.length,
               itemBuilder: (context, index) => _messages[index],
             ),
@@ -99,12 +101,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   color: Theme.of(context).primaryColor,
                   onPressed: _sendMessage,
                 ),
@@ -118,7 +120,10 @@ class _ChatWidgetState extends State<ChatWidget> {
         child: Column(
           children: [
             DrawerHeader(
-              child: Center(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: const Center(
                 child: Text(
                   'Username',
                   style: TextStyle(
@@ -128,34 +133,31 @@ class _ChatWidgetState extends State<ChatWidget> {
                   ),
                 ),
               ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
             ),
             ListTile(
-              leading: Icon(Icons.search),
-              title: Text('Search'),
+              leading: const Icon(Icons.search),
+              title: const Text('Search'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.help),
-              title: Text('Help'),
+              leading: const Icon(Icons.help),
+              title: const Text('Help'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.history),
-              title: Text('Chat History'),
+              leading: const Icon(Icons.history),
+              title: const Text('Chat History'),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -171,7 +173,7 @@ class ChatMessage extends StatelessWidget {
   final String text;
   final bool isUser;
 
-  ChatMessage({
+  const ChatMessage({super.key, 
     required this.text,
     required this.isUser,
   });
@@ -179,7 +181,7 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -189,15 +191,15 @@ class ChatMessage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.grey[200],
-                  child: Icon(Icons.chat_bubble_outline, color: Colors.black),
+                  child: const Icon(Icons.chat_bubble_outline, color: Colors.black),
                 ),
-                SizedBox(height: 4),
-                Text("Chatbot", style: TextStyle(fontSize: 10)),
+                const SizedBox(height: 4),
+                const Text("Chatbot", style: TextStyle(fontSize: 10)),
               ],
             ),
           Container(
-            padding: EdgeInsets.all(12.0),
-            margin: EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.only(left: 8.0, right: 8.0),
             decoration: BoxDecoration(
               color: isUser ? Colors.deepPurpleAccent : Colors.grey[200],
               borderRadius: BorderRadius.circular(12),
@@ -219,10 +221,10 @@ class ChatMessage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Theme.of(context).primaryColor,
-                  child: Icon(Icons.person, color: Colors.white),
+                  child: const Icon(Icons.person, color: Colors.white),
                 ),
-                SizedBox(height: 4),
-                Text("User", style: TextStyle(fontSize: 10)),
+                const SizedBox(height: 4),
+                const Text("User", style: TextStyle(fontSize: 10)),
               ],
             ),
         ],
