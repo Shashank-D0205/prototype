@@ -1,17 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prototype/Login%20Screen.dart';
-import 'home.dart';
-import 'splash_main.dart';
+import 'package:prototype/splash_main.dart';
+// import 'package:prototype/home.dart';
+import 'chat.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/GetStartedPage', // Set the initial route to GetStartedPage
+      initialRoute: '/GetStartedPage',
       routes: {
-        '/GetStartedPage': (context) => GetStartedPage(), // Add GetStartedPage route
-        '/home': (context) => HomePage(),
+        '/GetStartedPage': (context) => GetStartedPage(),
+        // '/home': (context) => HomePage(),
         '/LoginPage': (context) => const LoginApp(),
+        '/Chat' : (context) => ChatWidget()
       },
     ),
   );

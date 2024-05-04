@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "636084421945",
+    "project_id": "yuva-anubhav",
+    "storage_bucket": "yuva-anubhav.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636084421945:android:30525381529a69d7da14e8",
+        "android_client_info": {
+          "package_name": "com.example.prototype"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOdWhcxW3rJ76w_YoR1l9R17xePBrVV9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

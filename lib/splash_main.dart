@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototype/Login Screen.dart';
+import 'package:prototype/Sign%20up.dart';
 
 class GetStartedPage extends StatefulWidget {
   @override
@@ -62,9 +63,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow.shade900,
+                  backgroundColor: Colors.yellow.shade900,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),

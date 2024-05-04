@@ -1,63 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-
-void main() {
-  runApp(const LoginApp());
-}
-
-class LoginApp extends StatelessWidget {
-  const LoginApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LoginPage(),
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF121212),
-      ),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  Future<void> login(String username, String password, BuildContext context) async {
-    // Login backend
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50.0),
-              //UI EDIT
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
-                },
-                child: const Text(
-                  'New to YuvaAnubhav? Sign up',
-                  style: TextStyle(
-                    color: Color(0xFFE6B7D2),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignUpPage extends StatelessWidget {
   final TextEditingController _fullNameController = TextEditingController();
@@ -65,7 +8,54 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> signUp(String fullName, String email, String password, BuildContext context) async {
-    // Https logic!
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // SignUp successful
+      print("SignUp Success");
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Sign Up Success"),
+            content: const Text("You have successfully signed up"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Navigate to the Home page or any other page after signing up
+                  // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      // Handle sign up failure
+      print("Sign Up Failed: $e");
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Sign Up Failed"),
+            content: const Text("An error occurred while signing up. Please try again."),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -129,7 +119,7 @@ class SignUpPage extends StatelessWidget {
                     signUp(fullName, email, password, context);
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow.shade900,
+                    backgroundColor: Colors.yellow.shade900,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
